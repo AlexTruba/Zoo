@@ -20,7 +20,6 @@ namespace Zoo
         private void ChangeSomeAnimal(object j)
         {
             if (animals.Count != 0) {
-                Console.WriteLine(animals[random.Next(0, animals.Count - 1)].State);
                 animals[random.Next(0, animals.Count - 1)].changeState(); }
             
 
@@ -36,6 +35,16 @@ namespace Zoo
             Console.WriteLine("Feed Name -  покормить животное. Пример Feed Bobik ");
             Console.WriteLine("Heal Name - вылечить новое животное. Пример Heal Bobik ");
             Console.WriteLine("Remove Name -  удалить животное из зоопарка. Пример Remove Bobik ");
+            Console.WriteLine("0 - Показать всех животных, сгруппированных по виду животного");
+            Console.WriteLine("1 State -  Показать животных по состоянию. Пример 1 hungry ");
+            Console.WriteLine("2 - Показать всех тигров, которые больны");
+            Console.WriteLine("3 Alias - Показать слона с определенной кличкой. Пример 3 Bob");
+            Console.WriteLine("4 - Показать список всех кличек животных, которые голодны");
+            Console.WriteLine("5 - Показать самых здоровых животных каждого вида");
+            Console.WriteLine("6 - Показать количество мертвых животных каждого вида");
+            Console.WriteLine("7 - Показать всех волков и медведей, у которых здоровье выше 3");
+            Console.WriteLine("8 - Показать животное с максимальным здоровьем и животное с минимальным здоровьем ");
+            Console.WriteLine("9 - Показать средней количество здоровья у животных в зоопарке");
 
             while (true)
             {
@@ -55,6 +64,11 @@ namespace Zoo
         {
             var paramets = answer.Split(' ');
             //if user write 3 params then use method add animal
+            int numberOfFunction;
+            if (Int32.TryParse(paramets[0],out numberOfFunction))
+            {
+                ZooMethod.ChooseMethod(animals,numberOfFunction,paramets);            
+            }
             if (paramets.Length==3)
             {
                 if (paramets[0].ToLower()!="add")
@@ -117,6 +131,7 @@ namespace Zoo
             }
             else
             {
+                
                 Console.WriteLine("Извините, но такого метода нету.Попробуйте ещё раз!");
             }
         }
